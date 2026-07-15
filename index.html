@@ -140,7 +140,7 @@ var CONFIG = {
   clientName: "Mayhem",
   huntTitle: "Operator Scavenger Hunt",
   scenario: "You are an operator at Mayhem doing your rounds in Data Hall C and notice an ATS lamp is flickering.",
-  subtitle: "Work as a table team: one person drives in the instance while everyone else helps answer. Each step tells you where to go. The challenge is finding the answer once you're there.",
+  subtitle: "Split up into groups of 3-4. One person drives in the instance while everyone else helps answer.",
   teamNote: "Pick one driver for the instance. Everyone else reads, discusses, and answers.",
   timeLimitMinutes: 8,
   facilitatorPasscode: "golive",
@@ -151,22 +151,22 @@ var CONFIG = {
       items: [
         {
           id: "im1", type: "multi",
-          context: "Go to the Service Portal. This is the self-service front door for every Mayhem employee. Use the button below to open it and look around the home page.",
+          context: "Go to the Service Portal. This is the user interface for submitting incidents and accessing the knowledge base. Use the button below to open it and look around the home page.",
           resourceLink: "https://dev275895.service-now.com/sp",
           resourceLinkLabel: "Open the Service Portal",
           prompt: "From the Service Portal, how could you report the flickering ATS lamp? Select ALL that apply.",
           options: ["The Get Help tile", "The 'How can we help?' search bar", "The chat icon in the bottom corner", "The Cart"],
           corrects: [0, 1, 2], // [CONFIRM] — verify search + chat create incidents in your instance
-          learn: "There's more than one front door on purpose. Get Help, search, and chat all feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record. The Cart is only for ordering catalog items.",
+          learn: Get Help, search, and chat all feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record.",
           hint: "Three of the four will get your issue reported. Which one is for ordering things?"
         },
         {
           id: "im2", type: "quiz",
-          context: "You're filling out the incident form. The service desk will use what you enter to decide how urgent this is and who gets dispatched.",
+          context: "You're filling out the incident form. The dispatch team will use what you enter to decide how urgent this is and who gets dispatched.",
           prompt: "Which of the following information would be most useful for determining the impact of this incident?",
           options: ["When the lamp was last replaced", "Which asset is affected and what equipment it supports", "Who else is on shift with you", "The vendor that manufactured the lamp"],
           correct: 1,
-          learn: "Impact is always a two-way street: you describe what's affected and what depends on it, and the service desk weighs that against urgency to set priority. An ATS feeds critical load, so a flickering lamp there matters more than the same lamp on a storage shelf. This is how one incident feeds risk management.",
+          learn: "Impact measures scope of the incident, measured in terms of how many people this could affect, if left unresolved. An ATS feeds critical load, so a flickering lamp there matters more than the same lamp on a storage shelf. This is how one incident feeds risk management.",
           hint: "Impact is about what's affected and what depends on it."
         },
         {
@@ -186,7 +186,7 @@ var CONFIG = {
           prompt: "Enter the incident number for your ATS lamp report.",
           placeholder: "INC_______",
           answers: ["INC0010012"], // [CONFIRM] — staged incident number
-          learn: "Every incident gets a permanent number the moment it's submitted. That number is how you, the service desk, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
+          learn: "Every incident gets a number the moment it's submitted, which everyone who needs to within Mayhem can access.'",
           hint: "It's in the My Open Incidents widget on the portal home page."
         }
       ]
@@ -204,7 +204,7 @@ var CONFIG = {
           placeholder: "WO_______",
           answers: ["WO0010064"], // [CONFIRM] — staged highest-priority work order
           learn: "Work orders are how physical, hands-on work gets dispatched and tracked. They're separate from the incident that reported the problem, but linked to it. Priority tells you what to pick up first.",
-          hint: "Sort or scan the Priority column in My Active Work Orders."
+          hint: "Look for the three dots next to 'Priority.'"
         },
         {
           id: "fsm2", type: "hunt",
@@ -213,7 +213,7 @@ var CONFIG = {
           placeholder: "Asset…",
           answers: ["ATS"], // [CONFIRM] — staged asset name/tag
           learn: "Tying work to a named asset is what builds equipment history. Six months from now, anyone can pull up this asset and see every incident and work order it's had. That's how patterns get spotted before failures happen.",
-          hint: "Check the asset / configuration item field on the work order record."
+          hint: "Open the work order and look for a field related to assets."
         },
         {
           id: "fsm3", type: "hunt",
@@ -221,8 +221,8 @@ var CONFIG = {
           prompt: "How many incidents have been called in on this asset?",
           placeholder: "Number of incidents",
           answers: ["3"], // [CONFIRM] — staged count
-          learn: "One flickering lamp is a task; three incidents on the same asset is a pattern. Seeing related incidents in one place is how a recurring symptom becomes a root cause investigation instead of three separate fixes.",
-          hint: "The dashboard shows related incidents where the parent incident is active."
+          learn: "One flickering lamp is a task; three incidents on the same asset is a pattern that may need to be escalated to management.",
+          hint: "Scroll to the bottom of the main dashboard."
         },
         {
           id: "fsm4", type: "quiz",
@@ -246,7 +246,7 @@ var CONFIG = {
           prompt: "Where should they check FIRST before opening a new ticket?",
           options: ["Slack", "The Knowledge Base", "The Cart", "Platform Analytics"],
           correct: 1,
-          learn: "If a fix is documented, nobody should have to rediscover it. Checking knowledge first is the habit that turns the platform from a ticketing tool into a shared brain.",
+          learn: "If a fix is documented, nobody should have to rediscover it. Checking knowledge first is the habit that turns the platform from a ticketing tool into a database of past experiences.",
           hint: "Known issues with documented fixes shouldn't need a new ticket at all."
         },
         {
@@ -255,7 +255,7 @@ var CONFIG = {
           prompt: "What should happen with that write-up?",
           options: ["Keep it in your personal notebook", "Post it in a Slack thread", "Submit it as a knowledge article so it's searchable", "Attach it to your email signature"],
           correct: 2,
-          learn: "Written documentation only scales when it lands where everyone searches. A knowledge article outlives shift changes, turnover, and Slack history limits.",
+          learn: "Written documentation only scales when it lands where everyone searches. A knowledge article combats sudden death, turnover, and Slack history limits.",
           hint: "Fixes only scale when they land somewhere everyone searches."
         },
         {
@@ -264,19 +264,19 @@ var CONFIG = {
           prompt: "You're mid-task and forget a step. Which training material is designed for exactly that moment?",
           options: ["The full training deck", "A Quick Reference Guide (QRG)", "The vendor's equipment manual", "A recorded town hall"],
           correct: 1,
-          learn: "QRGs are built to be used during the work, not studied before it. You'll receive QRGs for each of your tasks as part of the training plan. Keep them handy for your first weeks after go-live.",
+          learn: "QRGs are built to be used during the work, not studied before it. You'll receive QRGs for each of your tasks as part of the training plan.",
           hint: "There's one of these for each persona and each task. They're short by design."
         },
         {
           id: "kb4", type: "hunt",
-          context: "The Knowledge portal is where articles and QRGs live. Open it and look at the home page.",
+          context: "The Knowledge portal is where articles live. Open it and look at the home page.",
           resourceLink: "https://dev275895.service-now.com/sp", // [CONFIRM] — point at the Knowledge portal
           resourceLinkLabel: "Open the Knowledge portal",
           prompt: "How many articles are published across all knowledge bases combined?",
           placeholder: "Number of articles",
           answers: ["42"], // [CONFIRM] — changes as articles are added
-          learn: "That number should keep growing after go-live: every documented fix, procedure, and QRG adds to it. A growing knowledge base is one of the clearest signs adoption is working.",
-          hint: "It's printed right under the search bar."
+          learn: "That number should keep growing after go-live, which is a sign adoption is working.",
+          hint: "The tile is under the search bar."
         }
       ]
     }
@@ -485,7 +485,7 @@ function render() {
       '<div class="score-row">' +
       '<div class="score-card"><span class="hud-label" style="color:var(--ink-soft)">Score</span><div class="big flame">' + S.score + '</div><span style="font-size:12px;color:var(--ink-soft)">of ' + MAX_SCORE + '</span></div>' +
       '<div class="score-card"><span class="hud-label" style="color:var(--ink-soft)">Time</span><div class="big">' + fmt(S.finishTime || 0) + '</div><span style="font-size:12px;color:var(--ink-soft)">of ' + CONFIG.timeLimitMinutes + ':00</span></div>' +
-      '</div><p>You took the flickering lamp from discovery to resolution: reported as an incident, then worked as a field service task. Raise your hand so the facilitator can log your score and time. If the room is still hunting, try the extra credit round: ' + MAX_EXTRA + ' bonus points available.</p>' +
+      '</div><p>You took the flickering lamp from discovery to resolution: reported as an incident, then worked as a field service task. Slack Jack Niedringhaus to log your team's score and time. If the room is still hunting, try the extra credit round: ' + MAX_EXTRA + ' bonus points available.</p>' +
       '<div class="finish-actions"><button class="btn" id="btnExtra">Extra credit →</button><button class="btn ghost" id="btnFinish">Finish here</button></div></div>';
   }
 
@@ -494,7 +494,7 @@ function render() {
       '<div class="score-row">' +
       '<div class="score-card"><span class="hud-label" style="color:var(--ink-soft)">Final score</span><div class="big flame">' + S.score + '</div><span style="font-size:12px;color:var(--ink-soft)">of ' + (MAX_SCORE + MAX_EXTRA) + ' possible</span></div>' +
       '<div class="score-card"><span class="hud-label" style="color:var(--ink-soft)">Hunt time</span><div class="big">' + fmt(S.finishTime || 0) + '</div><span style="font-size:12px;color:var(--ink-soft)">of ' + CONFIG.timeLimitMinutes + ':00</span></div>' +
-      '</div><p>The loop you just ran (report it, work it, document it) is the loop you\'ll run after go-live. QRGs for each of your tasks are coming as part of the training plan.</p>' +
+      '</div><p>The loop you just ran (report it, work it, document it) is a high-level summary of the loop you\'ll run after go-live.</p>' +
       '<button class="btn ghost" id="btnReset">Reset for next team</button></div>';
     h += footerHTML();
   }
