@@ -151,10 +151,10 @@ var CONFIG = {
       items: [
         {
           id: "im1", type: "multi",
-          context: "Go to the Service Portal. This is the self-service front door for every Mayhem employee. Use the button below to open it and look around the home page.",
-          resourceLink: "https://dev275895.service-now.com/sp",
-          resourceLinkLabel: "Open the Service Portal",
-          prompt: "From the Service Portal, how could you report the flickering ATS lamp? Select ALL that apply.",
+          context: "Go to the Employee Service Center. This is the self-service front door for every Mayhem employee. Use the button below to open it and look around the home page.",
+          resourceLink: "https://dev275895.service-now.com/esc?id=ec_standard_home",
+          resourceLinkLabel: "Open the Employee Service Center",
+          prompt: "From the Employee Service Center, how could you report the flickering ATS lamp? Select ALL that apply.",
           options: ["The Get Help tile", "The 'How can we help?' search bar", "The chat icon in the bottom corner", "The Cart"],
           corrects: [0, 1, 2], // [CONFIRM] — verify search + chat create incidents in your instance
           learn: "There's more than one front door on purpose. Get Help, search, and chat all feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record. The Cart is only for ordering catalog items.",
@@ -178,23 +178,23 @@ var CONFIG = {
           learn: "Behind the scenes, the platform reads what you entered (category, impact, urgency) and routes the incident to the assignment group best equipped to handle it. Your inputs and the desk's triage are a two-way street: together they set the priority and get the right people dispatched. Reporting it once is enough; no phone calls or chasing required.",
           hint: "It's automatically routed to the right person, so you know it's taken care of."
         },
-        {
+        { 
           id: "im4", type: "hunt",
-          context: "Your incident is submitted. Go back to the Service Portal home page and find the My Open Incidents widget on the right side. Everything you've reported is tracked there.",
-          resourceLink: "https://dev275895.service-now.com/sp",
-          resourceLinkLabel: "Back to the Service Portal",
+          context: "Your incident is submitted. Go back to the Employee Service Center home page and find the My Open Incidents widget on the right side. Everything you've reported is tracked there.",
+          resourceLink: "https://dev275895.service-now.com/esc?id=ec_standard_home",
+          resourceLinkLabel: "Back to the Employee Service Center",
           prompt: "Enter the incident number for your ATS lamp report.",
           placeholder: "INC_______",
           answers: ["INC0010012"], // [CONFIRM] — staged incident number
           learn: "Every incident gets a permanent number the moment it's submitted. That number is how you, the service desk, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
-          hint: "It's in the My Open Incidents widget on the portal home page."
+          hint: "It's in the My Open Incidents widget on the employee service center home page."
         }
       ]
     },
     {
       name: "Round 2: Field Service Management",
       story: "Now that you've finished your rounds, it's time to check your other tasks for the day.",
-      roundLink: "https://dev275895.service-now.com/now/platform-analytics-workspace/dashboards/params/edit/false/tab-sys-id/5e63a7c083cac71004cd5120feaad38d/sys-id/c66367c083cac71004cd5120feaad338/__state__/b64~eyI5MjNhOTEzYjUzMmMwMTEwYWFiOWRkZWVmZjdiMTI0MyI6eyJsaXN0X2NvbnRyb2xsZXJfMyI6eyJfIjp7InF1ZXJ5IjoidV9wYXJlbnRfaW5jaWRlbnRJU05PVEVNUFRZXnVfcGFyZW50X2luY2lkZW50LmFjdGl2ZT10cnVlIn19fX0%3D",
+      roundLink: "https://dev275895.service-now.com/now/platform-analytics-workspace/dashboards/params/edit/false/tab-sys-id/5e63a7c083cac71004cd5120feaad38d/sys-id/c66367c083cac71004cd5120feaad338/__state__/b64~eyI5MjNhOTEzYjUzMmMwMTEwYWFiOWRkZWVmZjdiMTI0MyI6eyJsaXN0X2NvbnRyb2xsZXJfMyI6eyJfIjp7InF1ZXJ5IjoiYWN0aXZlPXRydWVeYXNzaWduZWRfdG9EWU5BTUlDOTBkMTkyMWU1ZjUxMDEwMGE5YWQyNTcyZjJiNDc3ZmVeR1JPVVBCWXByaW9yaXR5In19fX0%3D",
       roundLinkLabel: "Open your Dashboard",
       items: [
         {
