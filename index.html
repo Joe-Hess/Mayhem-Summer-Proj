@@ -194,12 +194,12 @@ var CONFIG = {
     {
       name: "Round 2: Field Service Management",
       story: "Now that you've finished your rounds, it's time to check your other tasks for the day.",
+        roundLink: "https://dev275895.service-now.com/navpage.do",
+          roundLinkLabel: "Open your Dashboard",
       items: [
         {
           id: "fsm1", type: "hunt",
-          context: "Open your Dashboard using the button below. The My Active Work Orders widget lists all the field work assigned to you, with a Priority column.",
-           roundLink: "https://dev275895.service-now.com/navpage.do",
-          roundLinkLabel: "Open your Dashboard",
+          context: "Open your Dashboard using the button above, in the scenario. The My Active Work Orders widget lists all the field work assigned to you, with a Priority column.",
           prompt: "What is your highest priority task shown on your dashboard? Enter its work order number.",
           placeholder: "WO_______",
           answers: ["WO0010064", "WO0010078", "WO0010079", "WO0010080", "WO0010081", "WO0010082", "WO0010083"], // [CONFIRM] — staged highest-priority work order
