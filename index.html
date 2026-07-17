@@ -152,7 +152,7 @@ var CONFIG = {
         {
           id: "im1", type: "multi",
           context: "Go to the Employee Service Center. This is the self-service front door for every Mayhem employee. Use the button below to open it and look around the home page.",
-          resourceLink: "https://dev275895.service-now.com/esc?id=ec_standard_home",
+          resourceLink: "https://dev275895.service-now.com/esc",
           resourceLinkLabel: "Open the Employee Service Center",
           prompt: "From the Employee Service Center, how could you report the flickering ATS lamp? Select ALL that apply.",
           options: ["The Get Help tile", "The 'How can we help?' search bar", "The chat icon in the bottom corner", "The Cart"],
@@ -181,11 +181,11 @@ var CONFIG = {
         { 
           id: "im4", type: "hunt",
           context: "Your incident is submitted. Go back to the Employee Service Center home page and find the My Open Incidents widget on the right side. Everything you've reported is tracked there.",
-          resourceLink: "https://dev275895.service-now.com/esc?id=ec_standard_home",
+          resourceLink: "https://dev275895.service-now.com/esc",
           resourceLinkLabel: "Back to the Employee Service Center",
           prompt: "Enter the incident number for your ATS lamp report.",
           placeholder: "INC_______",
-          answers: ["INC0010051"], // [CONFIRM] — staged incident number
+          answers: ["INC0010051", "INC0010071", "INC0010072", "INC0010073", "INC0010074", "INC0010075", "INC0010076"], // [CONFIRM] — staged incident number
           learn: "Every incident gets a permanent number the moment it's submitted. That number is how you, the service desk, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
           hint: "It's in the My Open Incidents widget on the employee service center home page."
         }
