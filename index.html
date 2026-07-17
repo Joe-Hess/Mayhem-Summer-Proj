@@ -155,7 +155,7 @@ var CONFIG = {
           resourceLink: "https://dev275895.service-now.com/esc",
           resourceLinkLabel: "Open the Employee Service Center",
           prompt: "From the Employee Service Center, how could you report the flickering ATS lamp? Select ALL that apply.",
-          options: ["The chat function", "The 'How can we help?' search bar", "The create incident tile", "The Cart"],
+          options: ["Slack message", "The 'How can we help?' search bar", "The create incident tile", "The cart"],
           corrects: [1, 2], // [CONFIRM] — verify search + chat create incidents in your instance
           learn: "Get Help and search feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record. The Cart is only for ordering catalog items.",
           hint: "Two of the four will get your issue reported. Which one is for ordering things?"
@@ -183,7 +183,7 @@ var CONFIG = {
           context: "Your incident is submitted. Go back to the Employee Service Center home page and find the My Requests widget on the right side. Everything you've reported is tracked there.",
           resourceLink: "https://dev275895.service-now.com/esc",
           resourceLinkLabel: "Back to the Employee Service Center",
-          prompt: "Enter the incident number for the ATS lamp report.",
+          prompt: "Enter the incident number for the ATS lamp report. This is preloaded for the training.",
           placeholder: "INC_______",
           answers: ["INC0010051", "INC0010071", "INC0010072", "INC0010073", "INC0010074", "INC0010075", "INC0010076"], // [CONFIRM] — staged incident number
           learn: "Every incident gets a number the moment it's submitted. That number is how you, the dispatcher, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
@@ -193,13 +193,15 @@ var CONFIG = {
     },
     {
       name: "Round 2: Field Service Management",
-      story: "Now that you've finished your rounds, it's time to check your other tasks for the day.",
+      story: "Now that you've finished your rounds, it's time to check your other tasks for the day. The dashboard in your native ServiceNow UI is a great spot to start your day.",
         roundLink: "https://dev275895.service-now.com/navpage.do",
           roundLinkLabel: "Open your Dashboard",
       items: [
         {
           id: "fsm1", type: "hunt",
           context: "Open your Dashboard using the button above, in the scenario. The My Active Work Orders widget lists all the field work assigned to you, with a Priority column.",
+          resourceLink: "https://dev275895.service-now.com/navpage.do",
+          resourceLinkLabel: "Open your ServiceNow Dashboard",
           prompt: "What is your highest priority task shown on your dashboard? Enter its work order number.",
           placeholder: "WO_______",
           answers: ["WO0010064", "WO0010078", "WO0010079", "WO0010080", "WO0010081", "WO0010082", "WO0010083"], // [CONFIRM] — staged highest-priority work order
@@ -208,8 +210,8 @@ var CONFIG = {
         },
         {
           id: "fsm2", type: "hunt",
-          context: "Click into that work order and look at the record. Every work order names the specific asset it's for.",
-          prompt: "What is the asset that this work order is affecting?",
+          context: "Click into that work order and look at the record. Every work order names the specific asset it's for. Note you may have to right click and open the work order in another tab.",
+          prompt: "What is the asset that the work order from the previous question is affecting?",
           placeholder: "Asset…",
           answers: ["ATS", "ATS-001", "ats", "ASCO 8500", "001 - ASCO 8500 Series ATS", "ATS-001 - ASCO 8500 Series ATS", "ASCO 8500 Series ATS"], // [CONFIRM] — staged asset name/tag
           learn: "Tying work to a named asset is what builds equipment history. Six months from now, anyone can pull up this asset and see every incident and work order it's had. That's how patterns get spotted before failures happen.",
@@ -217,12 +219,12 @@ var CONFIG = {
         },
         {
           id: "fsm3", type: "hunt",
-          context: "Back on your Dashboard, there's a widget showing incidents related to this asset. These are issues other operators have already called in.",
+          context: "Back on your native ServiceNow Dashboard, there's a widget showing incidents related to this asset. These are issues other operators have already called in.",
           prompt: "How many incidents have been called in on this asset?",
           placeholder: "Number of incidents",
           answers: ["22"], // [CONFIRM] — staged count
           learn: "One flickering lamp is a task; repeated incidents on the same asset is a pattern. Seeing related incidents in one place is how a recurring symptom becomes a root cause investigation instead of three separate fixes.",
-          hint: "Scroll to the bottom of the dashboard."
+          hint: "Scroll to the bottom of the dashboard. You will see a bar graph with the information."
         },
         {
           id: "fsm4", type: "quiz",
