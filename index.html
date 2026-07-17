@@ -157,17 +157,17 @@ var CONFIG = {
           prompt: "From the Employee Service Center, how could you report the flickering ATS lamp? Select ALL that apply.",
           options: ["The chat function", "The 'How can we help?' search bar", "The create incident tile", "The Cart"],
           corrects: [1, 2], // [CONFIRM] — verify search + chat create incidents in your instance
-          learn: "There's more than one front door on purpose. Get Help and search all feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record. The Cart is only for ordering catalog items.",
+          learn: "Get Help and search feed the same incident process, so no matter how someone reports an issue, it lands in one queue with one record. The Cart is only for ordering catalog items.",
           hint: "Two of the four will get your issue reported. Which one is for ordering things?"
         },
         {
           id: "im2", type: "quiz",
           context: "You're filling out the incident form. The service desk will use what you enter to decide how urgent this is and who gets dispatched.",
           prompt: "Which of the following information would be most useful for determining the impact of this incident?",
-          options: ["When the lamp was last replaced", "What asset and people are affected and what equipment do they support", "Who else is on shift with you", "The vendor that manufactured the lamp"],
+          options: ["When the lamp was last replaced", "How many people this would affect if left unresolved", "Who else is on shift with you", "The vendor that manufactured the lamp"],
           correct: 1,
-          learn: "Impact is always a two-way street: you describe what's affected and what depends on it, and the service desk weighs that against urgency to set priority. An ATS feeds critical load, so a flickering lamp there matters more than the same lamp on a storage shelf. This is how one incident feeds risk management.",
-          hint: "Impact is about what's affected and what depends on it."
+          learn: "Impact is different from urgency, as it revolves around people. As Mayhem transitions to being a datacenter operator, it must consider its customers, and how many could be affected by a given incident.",
+          hint: "Impact is about what's affected and who depends on it."
         },
         {
           id: "im3", type: "quiz",
@@ -175,7 +175,7 @@ var CONFIG = {
           prompt: "Once an incident is submitted, who does it go to next?",
           options: ["Your manager", "No one, it sits until you call to follow up", "The dispatcher to properly triage the task", "It closes automatically if nobody picks it up"],
           correct: 2,
-          learn: "Behind the scenes, the platform reads what you entered (category, impact, urgency) and routes the incident to the assignment group best equipped to handle it. Reporting it once is enough; no phone calls or chasing required.",
+          learn: "Behind the scenes, the platform reads what you entered (category, impact, urgency) and routes the incident to the dispatcher to determine who is best equipped to handle it.",
           hint: "It's automatically routed to the right person, so you know it's taken care of."
         },
         { 
@@ -186,25 +186,25 @@ var CONFIG = {
           prompt: "Enter the incident number for the ATS lamp report.",
           placeholder: "INC_______",
           answers: ["INC0010051", "INC0010071", "INC0010072", "INC0010073", "INC0010074", "INC0010075", "INC0010076"], // [CONFIRM] — staged incident number
-          learn: "Every incident gets a permanent number the moment it's submitted. That number is how you, the service desk, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
-          hint: "It's in the My Requests widget on the employee service center page, or it can be found under requests of My active items on the homepage."
+          learn: "Every incident gets a number the moment it's submitted. That number is how you, the dispatcher, and reporting all refer to the same piece of work. No more 'that email I sent last week.'",
+          hint: "It's in the My Requests tab on the toolbar on the employee service center page, or it can be found under requests of My active items on the homepage."
         }
       ]
     },
     {
       name: "Round 2: Field Service Management",
       story: "Now that you've finished your rounds, it's time to check your other tasks for the day.",
-      roundLink: "https://dev275895.service-now.com/navpage.do",
-      roundLinkLabel: "Open your Dashboard",
       items: [
         {
           id: "fsm1", type: "hunt",
-          context: "Open your Dashboard using the button above. The My Active Work Orders widget lists all the field work assigned to you, with a Priority column.",
+          context: "Open your Dashboard using the button below. The My Active Work Orders widget lists all the field work assigned to you, with a Priority column.",
+           roundLink: "https://dev275895.service-now.com/navpage.do",
+          roundLinkLabel: "Open your Dashboard",
           prompt: "What is your highest priority task shown on your dashboard? Enter its work order number.",
           placeholder: "WO_______",
           answers: ["WO0010064", "WO0010078", "WO0010079", "WO0010080", "WO0010081", "WO0010082", "WO0010083"], // [CONFIRM] — staged highest-priority work order
-          learn: "Work orders are how physical, hands-on work gets dispatched and tracked. They're separate from the incident that reported the problem, but linked to it. Priority tells you what to pick up first.",
-          hint: "Sort or scan the Priority column in My Active Work Orders."
+          learn: "Work orders are how work gets dispatched and tracked. They're separate from the incident that reported the problem, but linked to it. Priority tells you what to pick up first.",
+          hint: "Look for the three dots next to priority in the My Active Work Orders widget."
         },
         {
           id: "fsm2", type: "hunt",
@@ -221,8 +221,8 @@ var CONFIG = {
           prompt: "How many incidents have been called in on this asset?",
           placeholder: "Number of incidents",
           answers: ["25"], // [CONFIRM] — staged count
-          learn: "One flickering lamp is a task; three incidents on the same asset is a pattern. Seeing related incidents in one place is how a recurring symptom becomes a root cause investigation instead of three separate fixes.",
-          hint: "The dashboard shows related incidents where the parent incident is active."
+          learn: "One flickering lamp is a task; repeated incidents on the same asset is a pattern. Seeing related incidents in one place is how a recurring symptom becomes a root cause investigation instead of three separate fixes.",
+          hint: "Scroll to the bottom of the dashboard."
         },
         {
           id: "fsm4", type: "quiz",
@@ -230,7 +230,7 @@ var CONFIG = {
           prompt: "What should you do in the work order before closing it?",
           options: ["Nothing, just close it", "Delete the work order", "Add work notes documenting what you found and fixed", "Email your manager a summary"],
           correct: 2,
-          learn: "Work notes are the written record of what actually happened: what you found, what you did, what you'd watch for. Process documentation lives in the record, not in emails or memory, so the next operator inherits everything you learned.",
+          learn: "Work notes are the written record of what actually happened: what you found, what you did, what you would watch for in the future. Process documentation lives in the record, not in emails or memory, so the next operator inherits everything you learned.",
           hint: "The next person who touches this equipment should be able to see the history."
         }
       ]
@@ -246,21 +246,21 @@ var CONFIG = {
           prompt: "Where should they check FIRST before opening a new ticket?",
           options: ["Slack", "The Knowledge Base", "The Cart", "Platform Analytics"],
           correct: 1,
-          learn: "If a fix is documented, nobody should have to rediscover it. Checking knowledge first is the habit that turns the platform from a ticketing tool into a shared brain.",
+          learn: "If a fix is documented, nobody should have to rediscover it. Checking knowledge first is the habit that turns the platform from a ticketing tool into a database of past experiences.",
           hint: "Known issues with documented fixes shouldn't need a new ticket at all."
         },
         {
           id: "kb2", type: "quiz",
-          context: "You wrote up the steps you took to diagnose and replace the lamp.",
+          context: "You wrote up the steps you took to diagnose the problem and replace the lamp.",
           prompt: "What should happen with that write-up?",
           options: ["Keep it in your personal notebook", "Post it in a Slack thread", "Submit it as a knowledge article so it's searchable", "Attach it to your email signature"],
           correct: 2,
-          learn: "Written documentation only scales when it lands where everyone searches. A knowledge article outlives shift changes, turnover, and Slack history limits.",
+          learn: "A knowledge article combats suddent death, turnover, and Slack history limits.",
           hint: "Fixes only scale when they land somewhere everyone searches."
         },
         {
           id: "kb3", type: "quiz",
-          context: "As part of go-live, every persona and task gets a Quick Reference Guide (QRG): a short, step-by-step walkthrough you can follow in the moment. Take a look using the button below.",
+          context: "As part of go-live, every persona and task gets Quick Reference Guides (QRG): short, step-by-step walkthrough you can follow in the moment. Take a look using the button below.",
           resourceLink: "https://myoffice.accenture.com/:w:/g/personal/anya_rao_accenture_com/IQAL_JNGhG0oQLRDDEENfsPCAT7iBFroIx99iZl6n53WJXc?e=eXE1RZ",
           resourceLinkLabel: "Open the QRGs",
           prompt: "You're mid-task and forget a step. Which training material is designed for exactly that moment?",
